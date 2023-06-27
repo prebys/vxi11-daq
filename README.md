@@ -1,4 +1,4 @@
-# vxi11-scopedaq
+# vxi11-daq
 # This project contains files to perform data aqcuisition and analysis using an Tektronix TDS3000 series scope
 # It consists of two subprojects
 #  -scopedaq-TDS3000: contains the data acquisition code
