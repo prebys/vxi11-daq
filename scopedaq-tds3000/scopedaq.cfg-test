@@ -1,0 +1,26 @@
+# Scopedaq configuration file.  Must contain legal GPIB commands.  No queries!
+# Comments indicated by #,C, or ! as first character.  This version is set up to 
+# trigger off the first channel
+SEL:CH4 ON
+SEL:CH3 ON
+SEL:CH2 ON
+SEL:CH1 ON
+CH1:SCA 2.0
+CH2:SCA .05
+CH3:SCA .05
+CH4:SCA .05
+CH4:POS -0.6
+# All four channels are high impedance.
+CH1:IMP MEG
+CH2:IMP MEG
+CH3:IMP MEG
+CH4:IMP MEG
+# Trigger on channel one
+TRIG:A:EDG:SOU CH1
+TRIG:A:EDG:SLO RIS
+TRIG:A:LEV 1.
+HOR:MAI:SCA 400E-6
+HOR:DEL:TIM 0
+# Maximum record lengths, two bytes/word
+HOR:RECO 10000
+DAT:WID 2
