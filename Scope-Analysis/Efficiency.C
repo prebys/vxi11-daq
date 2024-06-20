@@ -12,6 +12,8 @@
 #include <string>
 #include <sstream>
 
+#define STRING_BUFF 256  
+
 // Include the file to handle the scope data file
 #include "ScopeDataFile.h"
 
@@ -35,15 +37,15 @@ float vMax[NCH] = {0.,0.,0.,0.};
 float tWin[NCH][2] = {{-40.,-30.},{-50.,-40.},{-40.,-30.},{-46.,-36.}};
 
 // Construct the output file names
-char rootFile[256];
-char printFile[256];
+char rootFile[STRING_BUFF];
+char printFile[STRING_BUFF];
 
 // Pull out the first filename in the list
 stringstream tmp(filelist);
 string filename;
 tmp>>filename;
-sprintf(rootFile,"%s.root",filename.c_str());
-sprintf(printFile,"%s.pdf",filename.c_str());
+snprintf(rootFile,STRING_BUFF,"%s.root",filename.c_str());
+snprintf(printFile,STRING_BUFF,"%s.pdf",filename.c_str());
 
 TFile out(rootFile,"RECREATE");  // Output file. Histograms will be stored here
 
@@ -54,21 +56,21 @@ TH1F *p[NCH];
 TH1F *tMaxP[NCH];
 TH1F *pMaxP[NCH];
 
-char buf1[256],buf2[256];
+char buf1[STRING_BUFF],buf2[STRING_BUFF];
 
 // Book histograms
 for(int i=0; i<NCH; i++) {
-  sprintf(buf1,"t%d",i+1);
-  sprintf(buf2,"Peak Times, Channel %d",i+1);
+  snprintf(buf1,STRING_BUFF,"t%d",i+1);
+  snprintf(buf2,STRING_BUFF,"Peak Times, Channel %d",i+1);
   t[i] = new TH1F(buf1,buf2,100,tMin[i],tMax[i]);
-  sprintf(buf1,"p%d",i+1);
-  sprintf(buf2,"Peak Heights, Channel %d",i+1);
+  snprintf(buf1,STRING_BUFF,"p%d",i+1);
+  snprintf(buf2,STRING_BUFF,"Peak Heights, Channel %d",i+1);
   p[i] = new TH1F(buf1,buf2,100,vMin[i],vMax[i]);
-  sprintf(buf1,"tMaxP%d",i+1);
-  sprintf(buf2,"Max Peak Time, Channel %d",i+1);
+  snprintf(buf1,STRING_BUFF,"tMaxP%d",i+1);
+  snprintf(buf2,STRING_BUFF,"Max Peak Time, Channel %d",i+1);
   tMaxP[i] = new TH1F(buf1,buf2,100,tMin[i],tMax[i]);
-  sprintf(buf1,"pMaxP%d",i+1);
-  sprintf(buf2,"Max Peak Height, Channel %d",i+1);
+  snprintf(buf1,STRING_BUFF,"pMaxP%d",i+1);
+  snprintf(buf2,STRING_BUFF,"Max Peak Height, Channel %d",i+1);
   pMaxP[i] = new TH1F(buf1,buf2,100,vMin[i],vMax[i]);
 }  
 

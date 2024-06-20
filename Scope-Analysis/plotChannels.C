@@ -7,6 +7,8 @@
 #define NCHAN 4
 #define MAXPLOT 10
 
+#define STRING_BUFF 256
+
 
 TCanvas *plotChannels(string fileName,int nPlot=5, int nSkip=0, float tMin=0., float tMax=0.,float vMin=0., float vMax=0.) {
     
@@ -46,9 +48,9 @@ TCanvas *plotChannels(string fileName,int nPlot=5, int nSkip=0, float tMin=0., f
         
         if(count[chan-1]==nPlot) continue;
         
-        char name[128],title[128];
-        sprintf(name,"trace%d%d",chan,count[chan-1]);
-        sprintf(title,"Scope Trace, channel %d, trace %d",chan,count[chan-1]);
+        char name[STRING_BUFF],title[STRING_BUFF];
+        snprintf(name,STRING_BUFF,"trace%d%d",chan,count[chan-1]);
+        snprintf(title,STRING_BUFF,"Scope Trace, channel %d, trace %d",chan,count[chan-1]);
         int nBins=(tMax-tMin)/f.nsPerCount;
         // Use the scope range, unless limits are explicitly specified
         if(tMin>=tMax) {

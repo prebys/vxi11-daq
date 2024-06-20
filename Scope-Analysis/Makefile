@@ -9,6 +9,6 @@ distribution: clean
 	rm -f *.pdf *.root
 
 clean:  
-	rm -f  *.pcm *.so *.d *~ ._*
+	rm -f  *.pcm *.so *.d *~ ._* *ACLiC*
 
 

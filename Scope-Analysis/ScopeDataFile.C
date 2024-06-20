@@ -365,7 +365,7 @@ bool ScopeDataFile::decodeHeader() {
    if(scopeType==SCOPE_TYPE_TDS3000) {
 	   for(int i=0;i<N_SCOPE_CHANNELS;i++) {
 	  
-		  sprintf(buff,":CH%d",i+1);
+		  snprintf(buff,size(buff),":CH%d",i+1);
 		  string chanString = header.substr(header.find(buff)+strlen(buff));
 		  subs = chanString.substr(chanString.find("SCALE")+strlen("SCALE"));
 		  val = subs.substr(0,subs.find(";"));
@@ -387,7 +387,7 @@ bool ScopeDataFile::decodeHeader() {
    } else {
 	   for(int i=0;i<N_SCOPE_CHANNELS;i++) {
 	  
-		  sprintf(buff,":CHAN%d:RANG",i+1);
+		  snprintf(buff,size(buff),":CHAN%d:RANG",i+1);
 		  subs = header.substr(header.find(buff)+strlen(buff));
 		  val = subs.substr(0,subs.find(";"));
 		  voltsPerCount[i] = atof(val.c_str())/rangeCounts;

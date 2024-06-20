@@ -18,6 +18,8 @@
 #include <string>
 #include <sstream>
 
+#define STRING_BUFF 256
+
 // Include the file to handle the scope data file
 #include "ScopeDataFile.h"
 
@@ -25,48 +27,48 @@
 TCanvas *Examples(string filelist,int channel=1,double threshold=.01, float tMin=-200.,float tMax=200., float vMin=-.5,float vMax=.5) {
 
 // Construct the output file names
-char rootFile[256];
-char printFile[256];
+char rootFile[STRING_BUFF];
+char printFile[STRING_BUFF];
 // Pull out the first filename in the list
 stringstream tmp(filelist);
 string filename;
 tmp>>filename;
-sprintf(rootFile,"%s-chan%d.root",filename.c_str(),channel);
-sprintf(printFile,"%s-chan%d.pdf",filename.c_str(),channel);
+snprintf(rootFile,STRING_BUFF,"%s-chan%d.root",filename.c_str(),channel);
+snprintf(printFile,STRING_BUFF,"%s-chan%d.pdf",filename.c_str(),channel);
 
 TFile *out = new TFile(rootFile,"RECREATE");  // Output file. Histograms will be stored here
 
 // Book a bunch of histograms.  
 
-char title[256];
+char title[STRING_BUFF];
 // Signal height histogram
-sprintf(title,"Channel %d Signals",channel);
+snprintf(title,STRING_BUFF,"Channel %d Signals",channel);
 TH1F *s = new TH1F("s",title,256,vMin,vMax);
 
 
 // Number of peaks
-sprintf(title,"Channel %d Number of peaks",channel);
+snprintf(title,STRING_BUFF,"Channel %d Number of peaks",channel);
 TH1F *n = new TH1F("n",title,100,0.,100.);
 
 // Peak Times
-sprintf(title,"Channel %d Peak Times",channel);
+snprintf(title,STRING_BUFF,"Channel %d Peak Times",channel);
 TH1F *t = new TH1F("t",title,100,tMin,tMax);
 
 // Peak Heights
-sprintf(title,"Channel %d Peak Heights",channel);
+snprintf(title,STRING_BUFF,"Channel %d Peak Heights",channel);
 TH1F *p = new TH1F("p",title,100,vMin,vMax);
 
 
-sprintf(title,"Channel %d Time of maximum peak",channel);
+snprintf(title,STRING_BUFF,"Channel %d Time of maximum peak",channel);
 TH1F *tMaxP = new TH1F("tMaxP",title, 100, tMin, tMax);
 
-sprintf(title,"Channel %d Peak Height of Maximum peak",channel);
+snprintf(title,STRING_BUFF,"Channel %d Peak Height of Maximum peak",channel);
 TH1F *pMaxP = new TH1F("pMaxP",title, 100, vMin, vMax);
 
-sprintf(title,"Channel %d Time of other peaks",channel);
+snprintf(title,STRING_BUFF,"Channel %d Time of other peaks",channel);
 TH1F *t2 = new TH1F("t2",title,100,tMin,tMax);
 
-sprintf(title,"Channel %d Pulse height of other peaks",channel);
+snprintf(title,STRING_BUFF,"Channel %d Pulse height of other peaks",channel);
 TH1F *p2 = new TH1F("p2",title,100,vMin,vMax);
 
 // Set up the storage space for the record and the peak list
@@ -76,7 +78,7 @@ PeakList list;
 int nRec=0;
 
 // Loop over files int the file list
-char tmpbuff[256];
+char tmpbuff[STRING_BUFF];
 strcpy(tmpbuff,filelist.c_str());
 char *pch;
 

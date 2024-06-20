@@ -37,7 +37,7 @@ while(f.getRecord(r)) {
 
 
 
-Tested with MacOS, Scientific Linux, and Windows 7.
+Tested with MacOS, Linux, and Windows 7.
 
 At the moment, the MacOS version generates a LOT of warnings the first time root is 
 run.
@@ -83,6 +83,8 @@ Release notes;
                                      vertical scales the same as CH1.  Also got
                                      rid of the "compiled" and "interpreted" stuff,
                                      which is meaningless for root6.
+   2.14     20-JUN-2024	  E.Prebys   Replaced all sprinf() with snprintf() to avoid a 
+                                     bunch of warnings when loading.
                                                              
                                      
 

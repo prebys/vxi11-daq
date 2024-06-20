@@ -6,6 +6,8 @@
 #include <TCanvas.h>
 #include <TH1F.h>
 
+# define STRING_BUFF 256
+
 double beamWindow[2]={410.,500.};
 
 TCanvas *plotTimes(string fileName,int maxRec=0,double threshold=0) {
@@ -20,23 +22,23 @@ TCanvas *plotTimes(string fileName,int maxRec=0,double threshold=0) {
     TH1F *hPeakInTime[NCHAN];
     
     for(int i=0; i<NCHAN; i++ ) {
-        char name[128];
-        char title[128];
+        char name[STRING_BUFF];
+        char title[STRING_BUFF];
         
-        sprintf(name,"time%d",i+1);
-        sprintf(title,"peak times, channel %d",i+1);
+        snprintf(name,STRING_BUFF,"time%d",i+1);
+        snprintf(title,STRING_BUFF,"peak times, channel %d",i+1);
         hTime[i]=new TH1F(name,title,f.POINTS_PER_SEGMENT,f.minTime,f.maxTime);
         
-        sprintf(name,"nPeak%d",i+1);
-        sprintf(title,"Number of Peaks, channel %d",i+1);
+        snprintf(name,STRING_BUFF,"nPeak%d",i+1);
+        snprintf(title,STRING_BUFF,"Number of Peaks, channel %d",i+1);
         hNPeak[i]=new TH1F(name,title,100,0.,100.);
         
-        sprintf(name,"peak%d",i+1);
-        sprintf(title,"peak values, channel %d",i+1);
+        snprintf(name,STRING_BUFF,"peak%d",i+1);
+        snprintf(title,STRING_BUFF,"peak values, channel %d",i+1);
         hPeak[i]=new TH1F(name,title,256,f.minVoltage[i],f.maxVoltage[i]);
         
-        sprintf(name,"peakInTime%d",i+1);
-        sprintf(title,"peak values, in time with beam, channel %d",i+1);
+        snprintf(name,STRING_BUFF,"peakInTime%d",i+1);
+        snprintf(title,STRING_BUFF,"peak values, in time with beam, channel %d",i+1);
         hPeakInTime[i]=new TH1F(name,title,256,f.minVoltage[i],f.maxVoltage[i]);
     }
     
