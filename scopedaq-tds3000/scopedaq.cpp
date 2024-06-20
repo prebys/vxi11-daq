@@ -37,7 +37,7 @@
 
 #include "libvxi11.h" 
 
-#define STRING_BUFF 512		// buffer size for character buffer
+#define STRING_BUFF 256		// buffer size for character buffer
 #define MAX_BUFF 100000		// buffer size for data. Big enough for ASCII readout
 #define NCHAN 4				// number of channels
 
@@ -80,10 +80,9 @@ if(!getenv("VXI_IP")) {
   snprintf(vxi_ip,STRING_BUFF,"%s",getenv("VXI_IP"));
 }
 
-snprintf(timestamp,STRING_BUFF,"%ld",(long) time(NULL));
 
 if(argc<2) {
-  snprintf(filename,STRING_BUFF,"scopedaq-%s.dat",timestamp);
+  snprintf(filename,STRING_BUFF,"scopedaq-%ld.dat",(long) time(NULL));
 } else {
   snprintf(filename,STRING_BUFF,"%s",argv[1]);
 }
