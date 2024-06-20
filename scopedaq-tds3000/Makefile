@@ -1,19 +1,33 @@
 # Generate the scopedaq and scopetalk program
 #CFLAGS = -Wall -g
-CC = gcc
-RPCGEN = rpcgen
+CC = g++
+
+# OS name
+UNAME := $(shell uname -s)
+# OS independent flags
+VXI11_LIB=
+
+# MacOS (OSX) specific flags
+ifeq ($(UNAME),Darwin)
+  VXI11_LIB=-L/usr/local/lib
+endif
+
+# Linux specific flags
+ifeq ($(UNAME),Linux)
+  VXI11_LIB=-L/usr/local/lib
+endif
+
 
 all: clean talkscope scopedaq
 
-talkscope: talkscope.c vxi11.h
-	$(CC) -o talkscope talkscope.c
-	
-scopedaq: scopedaq.c vxi11.h
-	$(CC) -o scopedaq scopedaq.c
+talkscope: talkscope.cpp 
+	$(CC) $(CCFLAGS) talkscope.cpp  -lvxi11 -o talkscope
 
-vxi11.h: vxi11.rpcl
-	$(RPCGEN) vxi11.rpcl
+scopedaq: scopedaq.cpp 
+	$(CC) $(CCFLAGS) scopedaq.cpp  -lvxi11 -o scopedaq
+	
+
 
 clean:
-	rm -f scopedaq talkscope *.o vxi11.h vxi11_svc.c vxi11_xdr.c vxi11_clnt.c *~
+	rm -f scopedaq talkscope *.o  *~
 

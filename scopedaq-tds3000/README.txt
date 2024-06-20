@@ -7,11 +7,10 @@ Before running programs, environmental variable VXI_IP should be set to the
 
 
 Contents:
-  talkscope.c - simple program to send GPIB commands to the scope
-  scopedaq.c - data acquisition program for scope.  Described in header
+  talkscope.cpp - simple program to send GPIB commands to the scope
+  scopedaq.cpp - data acquisition program for scope.  Described in header
   scopedaq.cfg - configuration file for scope.  List of GPIP commands to override 
                  defaults
-  vxi11.rpcl - resource file describing socket connections.
   Makefile - make programs
   README.txt - this file
   
@@ -29,7 +28,9 @@ Building and usage:
 
 Change log:
 
-2-Jun-2015 E. Prebys  Cleaned up and updated from original version.  Added VXI_IP
-                      to replace hardcoding.
+2-Jun-2015 E. Prebys  	Cleaned up and updated from original version.  Added VXI_IP
+                      	to replace hardcoding.
                       
+20-JUN-2024 E. Prebys 	Modified to use the VXI11 library at 
+						https://github.com/Lew-Engineering/libvxi11
                                        
