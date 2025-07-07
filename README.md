@@ -9,5 +9,6 @@ The  use of both of these packages are defined in README files in the directorie
 Both of these have their own README files
 
  History:
- -27-JUN-2023  E.Prebys  Original github creation.
- -18-JUN-2024  E.Prebys Modified scopedaq to use the Vxi11 utilities at https://github.com/Lew-Engineering/libvxi11.git
+ 
+ *27-JUN-2023  E.Prebys  Original github creation.
+ *18-JUN-2024  E.Prebys Modified scopedaq to use the Vxi11 utilities at https://github.com/Lew-Engineering/libvxi11.git
