@@ -1,6 +1,7 @@
 # vxi11-daq
 This project contains files to perform data aqcuisition and analysis using an Tektronix TDS3000 series scope
 It consists of two subprojects
+
 -scopedaq-TDS3000: contains the C++ data acquisition code. Requires VXI11 library
 -Scope-Analysis:   conaints the ROOT based analysis tools
 
