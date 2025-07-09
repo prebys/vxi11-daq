@@ -15,11 +15,6 @@ ScopeDataFile class, defined by ScopeDataFile.C and ScopeDataFile.h.
 
 Rootlogon.C will load ScopeDataFile.C, plotChannels.C, plotTimes.C, 
 QAPlots.C. Examples.C 
-
-You can read the headers for the use of each one, but to simply plot all 4 channels
-for the first few events, do
-
-root[] plotChannels("filename.dat")
  
 General access to the datafile is as follows:
 
@@ -35,12 +30,28 @@ while(f.getRecord(r)) {
     }
   }
 
+You can read the headers for the use of each one, but to simply plot all 4 channels
+for the first few events, do
+
+root[] plotChannels("filename.dat")
+
+The full form of this command is:
+     plotChanneTCanvas *plotChannels(string fileName,int nPlot=5, int nSkip=0, 
+          float tMin=0., float tMax=0.,float vMin=0., float vMax=0.) {
+          
+where: 
+  - filename: data file name
+  - nPlot: number of events to plot
+  - nSkip: number of events to skip
+// The next few variables all default to the scope limits if not specified
+  - tMin, TMax:  time range (in ns)
+  - vMin, vMax: voltage range (in V)
+
+The ScopeDataFile object also contains a simple peak finding routine.  You can see an
+example of its use in the plotTimes.C program.
 
 
 Tested with MacOS, Linux, and Windows 7.
-
-At the moment, the MacOS version generates a LOT of warnings the first time root is 
-run.
 
   
 Release notes;
